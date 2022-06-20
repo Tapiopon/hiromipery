@@ -1,0 +1,95 @@
+@import url('font/NotoSerifJP-Regular.otf');
+
+html,body{
+  margin:0;
+  overflow:hidden;
+	height: 100%;
+	color: #fff;
+}
+
+#particles-js{ 
+	position:fixed;/*描画固定*/
+	z-index:-1;/*描画を一番下に*/
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(180deg, rgba(18,56,51,1) 0%, rgba(0,3,1,1) 100%);
+}
+
+#wrapper{
+	position: relative;
+	z-index: 1;
+	width:100%;
+	height: 100%;
+}
+.title {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.5em;
+  -webkit-text-stroke: 0.5px #000;
+  background: linear-gradient(0deg, #a2c2e6, #e5abbe);
+  -webkit-background-clip: text;
+  --text-fill-color: transparent;
+  text-shadow:0 0 5px #fff;
+}
+
+.explanation-background {
+  position: relative;
+  width: 90%;
+  padding: 2px;
+  background-color: rgba(0,0,0,0.6);
+  border: solid 2px;
+  border-color: #a3d6cc;
+  left:50%;
+  margin-right:-50%;
+  transform: translate(-50%);
+  border-radius: 90px;
+}
+
+.explanation {
+  position: relative;
+  text-align: center;
+  background: linear-gradient(45deg, #a2c2e6, #e5abbe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:0 0 4px #000;
+  font-size: 1.1em;
+  width: 100%;
+  opacity: 1;
+}
+
+.videos {
+  position: relative;
+  padding: 5px;
+  margin: 16px 6px 0px 6px;
+  border: solid 2px;
+  border-color: #fff;
+  background: linear-gradient(45deg, #a2c2e6, #e5abbe);
+}
+
+.videos li {
+  position: relative;
+  color: #000;
+  background: linear-gradient(45deg, #000, #0ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.1em;
+  width: 8em;
+  opacity: 1;
+  border: solid 2px;
+  border-color: #274a78;
+}
+
+#twitch-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height:0px;
+}
+
+#twitch-embed iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}

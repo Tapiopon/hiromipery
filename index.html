@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hiromi_peryのホームページです">
+  <title></title>
+  <link rel="icon" type="image/png" href="/icon/512.png">
+  <link rel="apple-touch-icon" href="/icon/512.png">
+  <link rel="stylesheet" type="text/css" href="css/background.css">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    navigator.serviceWorker.register('/sw.js');
+  </script>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <div id="wrapper">
+    <p class="title">Hiromi_peryのホームページ</p>
+    <div class="explanation-background">
+      <p class="explanation">
+        こちらのチャンネルは主に<br>
+        フォートナイトなどの<br>
+        TPSやFPSゲームをやっています。<br>
+        ですが、殺伐とした雰囲気はなく<br>
+        初心者とエンジョイなプレイ動画を<br>
+        アップしていることが特徴です<br>
+      </p>
+    </div>
+    <div class="videos">
+      <li>最新の動画</li>
+      <div id="twitch-embed"></div>
+      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+      <script>
+        axios.get('https://api.twitch.tv/helix/videos?user_id=702500750',{
+          headers:{
+            "Client-ID": "4dglidw4oc7m9l3cxoo0fthw0r5uh8",
+            "Authorization": "Bearer 3r1lazg2glllz04bimrvgz5wuaaea4"
+          }
+        }).then(res=>{
+          new Twitch.Player("twitch-embed", {
+            video: res.data.data[0].id
+          });
+        })
+      </script>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="javascript/background.js"></script>
+</body>
+</html>
