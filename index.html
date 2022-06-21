@@ -9,14 +9,15 @@
   <link rel="apple-touch-icon" href="/icon/512.png">
   <link rel="stylesheet" type="text/css" href="css/background.css">
   <link rel="manifest" href="manifest.json">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="javascript/axios.min.js"></script>
+  <script src="javascript/v1.js"></script>
   <script>
     navigator.serviceWorker.register('/sw.js');
   </script>
 </head>
 <body>
   <div id="particles-js"></div>
-  <div id="wrapper">
+  <div id="wrapper" style="overflow:scroll">
     <p class="title">Hiromi_peryのホームページ</p>
     <div class="explanation-background">
       <p class="explanation">
@@ -30,8 +31,9 @@
     </div>
     <div class="videos">
       <li>最新の動画</li>
-      <div id="twitch-embed"></div>
-      <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+      <div class="embedframe">
+        <iframe id="twitchvideo"></iframe>
+      </div>
       <script>
         axios.get('https://api.twitch.tv/helix/videos?user_id=702500750',{
           headers:{
@@ -39,14 +41,33 @@
             "Authorization": "Bearer 3r1lazg2glllz04bimrvgz5wuaaea4"
           }
         }).then(res=>{
-          new Twitch.Player("twitch-embed", {
-            video: res.data.data[0].id
-          });
+          twitchvideo.src = `https://player.twitch.tv/?video=${res.data.data[0].id}&autoplay=false&parent=localhost`
+        })
+      </script>
+    </div>
+    <div id="liveframe" style="display:none">
+      <li>現在ライブ配信をしています</li>
+      <div>
+        <iframe id="twitchlive"></iframe>
+      </div>
+      <script>
+        axios.get('https://api.twitch.tv/helix/streams?user_id=702500750',{
+          headers:{
+            "Client-ID": "4dglidw4oc7m9l3cxoo0fthw0r5uh8",
+            "Authorization": "Bearer 3r1lazg2glllz04bimrvgz5wuaaea4"
+          }
+        }).then(res=>{
+          console.log(res)
+          if(res.data.data[0]){
+            twitchlive.src="https://player.twitch.tv/?channel=hiromi_pery&parent=localhost"
+          }else{
+            document.getElementById('liveframe').style.display = "none"
+          }
         })
       </script>
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="javascript/particles.min.js"></script>
   <script src="javascript/background.js"></script>
 </body>
 </html>
